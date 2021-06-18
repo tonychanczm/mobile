@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"sync"
 	"time"
 )
 
@@ -17,24 +18,27 @@ func Greetings(name string) string {
 	return fmt.Sprintf("Hello, %s!", name)
 }
 
+var o sync.Once
+
 func Run() {
-	go func() {
-		listen := "0.0.0.0:8081"
-		ln, err := net.Listen("tcp", listen)
-		if err != nil {
-			panic(err)
-		}
-		log.Print("Now listening", listen, "...")
-		for {
-			conn, err := ln.Accept()
-			log.Printf("Accept! from %v", conn.RemoteAddr())
+	o.Do(func() {
+		go func() {
+			listen := "0.0.0.0:8081"
+			ln, err := net.Listen("tcp", listen)
 			if err != nil {
 				panic(err)
 			}
-			go func() {
-				defer conn.Close()
-				time.Sleep(1*time.Second)
-				io.WriteString(conn, `HTTP/1.1 200 OK
+			log.Print("Now listening", listen, "...")
+			for {
+				conn, err := ln.Accept()
+				log.Printf("Accept! from %v", conn.RemoteAddr())
+				if err != nil {
+					panic(err)
+				}
+				go func() {
+					defer conn.Close()
+					time.Sleep(1*time.Second)
+					io.WriteString(conn, `HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache
 Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
@@ -45,7 +49,9 @@ Vary: Accept-Encoding
 Content-Type: text/plain
 
 i am worked`)
-			}()
-		}
-	}()
+					time.Sleep(10*time.Second)
+				}()
+			}
+		}()
+	})
 }
