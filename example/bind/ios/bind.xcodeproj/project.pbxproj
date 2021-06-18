@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BDDBE05C267C7488000FF86A /* Hello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDDBE05B267C7488000FF86A /* Hello.framework */; };
+		BDDBE064267C7B9D000FF86A /* Hello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDDBE063267C7B9D000FF86A /* Hello.framework */; };
 		EBA3E2861B681AFA00018449 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3E2851B681AFA00018449 /* main.m */; };
 		EBA3E2891B681AFA00018449 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3E2881B681AFA00018449 /* AppDelegate.m */; };
 		EBA3E28C1B681AFA00018449 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3E28B1B681AFA00018449 /* ViewController.m */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BDDBE05B267C7488000FF86A /* Hello.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hello.framework; sourceTree = "<group>"; };
+		BDDBE063267C7B9D000FF86A /* Hello.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hello.framework; sourceTree = "<group>"; };
 		EBA3E2801B681AFA00018449 /* bind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA3E2841B681AFA00018449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBA3E2851B681AFA00018449 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDDBE05C267C7488000FF86A /* Hello.framework in Frameworks */,
+				BDDBE064267C7B9D000FF86A /* Hello.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 		EBA3E2821B681AFA00018449 /* bind */ = {
 			isa = PBXGroup;
 			children = (
-				BDDBE05B267C7488000FF86A /* Hello.framework */,
+				BDDBE063267C7B9D000FF86A /* Hello.framework */,
 				EBA3E2871B681AFA00018449 /* AppDelegate.h */,
 				EBA3E2881B681AFA00018449 /* AppDelegate.m */,
 				EBA3E28A1B681AFA00018449 /* ViewController.h */,
@@ -273,6 +273,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/tonychanczm/gtk/mobile/example/bind/ios/bind,
+					"$(PROJECT_DIR)/bind",
 				);
 				INFOPLIST_FILE = bind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -291,6 +292,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/tonychanczm/gtk/mobile/example/bind/ios/bind,
+					"$(PROJECT_DIR)/bind",
 				);
 				INFOPLIST_FILE = bind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

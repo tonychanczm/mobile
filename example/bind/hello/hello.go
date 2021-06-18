@@ -16,7 +16,7 @@ func Greetings(name string) string {
 }
 
 func Run() {
-	ln, err := net.Listen(":60001", "tcp")
+	ln, err := net.Listen("tcp", ":60001")
 	if err != nil {
 		panic(err)
 	}
