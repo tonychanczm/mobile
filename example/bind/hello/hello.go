@@ -19,26 +19,40 @@ func Greetings(name string) string {
 }
 
 var o sync.Once
+var ln net.Listener
+
+func startListening() {
+	listen := "0.0.0.0:8081"
+	var err error
+	ln, err = net.Listen("tcp", listen)
+	if err != nil {
+		panic(err)
+	}
+	log.Print("Now listening", listen, "...")
+}
 
 func Run() {
 	o.Do(func() {
+		startListening()
+	})
+}
+
+func DoAccept() {
+	for {
+		if ln == nil {
+			time.Sleep(time.Second)
+			continue
+		}
+		fmt.Println("Waiting Accept...")
+		conn, err := ln.Accept()
+		log.Printf("Accept! from %v", conn.RemoteAddr())
+		if err != nil {
+			panic(err)
+		}
 		go func() {
-			listen := "0.0.0.0:8081"
-			ln, err := net.Listen("tcp", listen)
-			if err != nil {
-				panic(err)
-			}
-			log.Print("Now listening", listen, "...")
-			for {
-				conn, err := ln.Accept()
-				log.Printf("Accept! from %v", conn.RemoteAddr())
-				if err != nil {
-					panic(err)
-				}
-				go func() {
-					defer conn.Close()
-					time.Sleep(1*time.Second)
-					io.WriteString(conn, `HTTP/1.1 200 OK
+			defer conn.Close()
+			time.Sleep(1*time.Second)
+			io.WriteString(conn, `HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache
 Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
@@ -49,9 +63,7 @@ Vary: Accept-Encoding
 Content-Type: text/plain
 
 i am worked`)
-					time.Sleep(10*time.Second)
-				}()
-			}
+			time.Sleep(10*time.Second)
 		}()
-	})
+	}
 }
