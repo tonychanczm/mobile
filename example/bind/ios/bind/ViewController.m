@@ -10,11 +10,10 @@
 
 @implementation ViewController
 
-@synthesize textLabel;
+@synthesize hjh;
 
 - (void)loadView {
     [super loadView];
-    textLabel.text = HelloGreetings(@"iOS and Gopher");
+    hjh.text = HelloGreetings(@"emm iOS and Gopher");
 }
-
 @end

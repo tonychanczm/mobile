@@ -41,13 +41,12 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/tonychanczm/mobile/app"
 	"github.com/tonychanczm/mobile/event/lifecycle"
 	"github.com/tonychanczm/mobile/event/paint"
 	"github.com/tonychanczm/mobile/event/size"
 	"github.com/tonychanczm/mobile/gl"
+	"net/http"
 )
 
 func main() {
@@ -61,9 +60,10 @@ func main() {
 			select {
 			case <-det:
 				a.Send(paint.Event{})
-				det = nil
+				//det = nil
 
 			case e := <-a.Events():
+
 				switch e := a.Filter(e).(type) {
 				case lifecycle.Event:
 					glctx, _ = e.DrawContext.(gl.Context)
@@ -97,6 +97,13 @@ func checkNetwork() {
 }
 
 func onDraw(glctx gl.Context, sz size.Event) {
+	defer func() {
+		err := recover()
+		if err != nil {
+			glctx.ClearColor(1, 1, 0, 1)
+		}
+		glctx.Clear(gl.COLOR_BUFFER_BIT)
+	}()
 	select {
 	case <-determined:
 		if ok {
@@ -105,7 +112,7 @@ func onDraw(glctx gl.Context, sz size.Event) {
 			glctx.ClearColor(1, 0, 0, 1)
 		}
 	default:
-		glctx.ClearColor(0, 0, 0, 1)
+		glctx.ClearColor(0, 0, 1, 1)
 	}
-	glctx.Clear(gl.COLOR_BUFFER_BIT)
+	//glctx.Clear(gl.COLOR_BUFFER_BIT)
 }

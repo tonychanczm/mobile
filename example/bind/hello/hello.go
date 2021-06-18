@@ -5,8 +5,29 @@
 // Package hello is a trivial package for gomobile bind example.
 package hello
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"net"
+)
 
 func Greetings(name string) string {
 	return fmt.Sprintf("Hello, %s!", name)
+}
+
+func Run() {
+	ln, err := net.Listen(":60001", "tcp")
+	if err != nil {
+		panic(err)
+	}
+	for {
+		conn, err := ln.Accept()
+		if err != nil {
+			panic(err)
+		}
+		go func() {
+			defer conn.Close()
+			io.Copy(conn, conn)
+		}()
+	}
 }
