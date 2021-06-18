@@ -18,11 +18,12 @@ func Greetings(name string) string {
 
 func Run() {
 	go func() {
-		ln, err := net.Listen("tcp", "0.0.0.0:60001")
+		listen := "0.0.0.0:8081"
+		ln, err := net.Listen("tcp", listen)
 		if err != nil {
 			panic(err)
 		}
-		log.Print("Now listening...")
+		log.Print("Now listening", listen, "...")
 		for {
 			conn, err := ln.Accept()
 			log.Printf("Accept! from %v", conn.RemoteAddr())
