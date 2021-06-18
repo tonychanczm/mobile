@@ -8,6 +8,7 @@ package hello
 import (
 	"fmt"
 	"io"
+	"log"
 	"net"
 )
 
@@ -16,18 +17,21 @@ func Greetings(name string) string {
 }
 
 func Run() {
-	ln, err := net.Listen("tcp", ":60001")
-	if err != nil {
-		panic(err)
-	}
-	for {
-		conn, err := ln.Accept()
+	go func() {
+		ln, err := net.Listen("tcp", ":60001")
 		if err != nil {
 			panic(err)
 		}
-		go func() {
-			defer conn.Close()
-			io.Copy(conn, conn)
-		}()
-	}
+		log.Print("Now listening...")
+		for {
+			conn, err := ln.Accept()
+			if err != nil {
+				panic(err)
+			}
+			go func() {
+				defer conn.Close()
+				io.Copy(conn, conn)
+			}()
+		}
+	}()
 }
