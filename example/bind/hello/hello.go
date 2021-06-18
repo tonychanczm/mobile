@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"time"
 )
 
 func Greetings(name string) string {
@@ -32,7 +33,18 @@ func Run() {
 			}
 			go func() {
 				defer conn.Close()
-				io.Copy(conn, conn)
+				time.Sleep(1*time.Second)
+				io.WriteString(conn, `HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+ETag: "34aa387-d-1568eb00"
+Accept-Ranges: bytes
+Content-Length: 51
+Vary: Accept-Encoding
+Content-Type: text/plain
+
+i am worked`)
 			}()
 		}
 	}()
