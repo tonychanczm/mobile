@@ -23,7 +23,7 @@ var o sync.Once
 func Run() {
 	o.Do(func() {
 		go func() {
-			listen := "192.168.2.117:8081"
+			listen := "0.0.0.0:8081"
 			ln, err := net.Listen("tcp", listen)
 			if err != nil {
 				panic(err)

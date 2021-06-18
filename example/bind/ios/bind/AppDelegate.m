@@ -15,7 +15,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    HelloRun();
 }
 
 @end

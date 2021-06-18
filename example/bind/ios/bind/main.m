@@ -4,8 +4,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-
+@import Hello;  // Gomobile bind generated framework
 int main(int argc, char * argv[]) {
+    HelloRun();
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
