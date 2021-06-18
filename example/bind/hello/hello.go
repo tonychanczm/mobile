@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"net/http"
 	"sync"
 	"time"
 )
@@ -32,6 +33,7 @@ func startListening() {
 }
 
 func Run() {
+	_, _ = http.Get("https://baidu.com")
 	o.Do(func() {
 		startListening()
 	})

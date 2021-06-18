@@ -15,6 +15,11 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    HelloDoAccept();
+}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application {
+    HelloDoAccept();
 }
 
 @end
