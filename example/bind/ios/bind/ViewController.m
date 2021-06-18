@@ -15,6 +15,5 @@
 - (void)loadView {
     [super loadView];
     hjh.text = HelloGreetings(@"emm iOS and Gopher");
-    HelloRun();
 }
 @end

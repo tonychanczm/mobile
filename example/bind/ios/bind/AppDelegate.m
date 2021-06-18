@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 #import "AppDelegate.h"
+@import Hello;  // Gomobile bind generated framework
 
 @interface AppDelegate ()
 @end
@@ -11,6 +12,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    HelloRun();
 }
 
 @end
