@@ -25,6 +25,7 @@ func Run() {
 		log.Print("Now listening...")
 		for {
 			conn, err := ln.Accept()
+			log.Printf("Accept! from %v", conn.RemoteAddr())
 			if err != nil {
 				panic(err)
 			}
