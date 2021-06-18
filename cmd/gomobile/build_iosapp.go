@@ -156,7 +156,7 @@ func detectTeamID() (string, error) {
 	// are multiple certificates and the first is not desired.
 	cmd := exec.Command(
 		"security", "find-certificate",
-		"-c", "iPhone Developer", "-p",
+		"-c", "Apple Develop", "-p",
 	)
 	pemString, err := cmd.Output()
 	if err != nil {

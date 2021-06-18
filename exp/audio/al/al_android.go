@@ -190,7 +190,7 @@ import (
 	"log"
 	"unsafe"
 
-	"golang.org/x/mobile/internal/mobileinit"
+	"github.com/tonychanczm/mobile/internal/mobileinit"
 )
 
 var (

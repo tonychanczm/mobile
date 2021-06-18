@@ -21,9 +21,9 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/mobile/internal/importers"
-	"golang.org/x/mobile/internal/importers/java"
-	"golang.org/x/mobile/internal/importers/objc"
+	"github.com/tonychanczm/mobile/internal/importers"
+	"github.com/tonychanczm/mobile/internal/importers/java"
+	"github.com/tonychanczm/mobile/internal/importers/objc"
 )
 
 func init() {
