@@ -18,7 +18,7 @@ func Greetings(name string) string {
 
 func Run() {
 	go func() {
-		ln, err := net.Listen("tcp", ":60001")
+		ln, err := net.Listen("tcp", "0.0.0.0:60001")
 		if err != nil {
 			panic(err)
 		}
